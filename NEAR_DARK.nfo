@@ -223,11 +223,11 @@ display frame numbers rather than timestamps).
 
 The French (and German) video can be broken down into frame numbers like this:
 
-000001-000024	Black (24 frames)
-000025-000504	StudioCanal logo (480 frames)
-000505-000516	Black (12 frames)
-000517-000525	Grainy black, scanned from the film print (9 frames)
-000526-135586	DEG logo, followed by the film itself
+000001-000024   Black (24 frames)
+000025-000504   StudioCanal logo (480 frames)
+000505-000516   Black (12 frames)
+000517-000525   Grainy black, scanned from the film print (9 frames)
+000526-135586   DEG logo, followed by the film itself
 
 In the earlier version of this project mentioned above, I excised frames 25-525,
 re-joining the first 24 frames onto the start of the DEG logo at frame 526 to
@@ -246,7 +246,7 @@ other words). This cutting point was therefore at the end of the 516th frame.
 
 At the 23.796 (24000/1001) fps framerate...
 
-	516 video frames occupy 516 / (24000/1001) = 21.5215 seconds of time
+    516 video frames occupy 516 / (24000/1001) = 21.5215 seconds of time
 
 If we round up to the nearest whole millisecond, this makes our edit timestamp
 in the French video/audio tracks 00:00:21.522, if we were to cut off the
