@@ -48,26 +48,26 @@ film. This is much more likely to be reproduced for nefarious purposes, however,
 and people seem to largely prefer the flexibility of MKV, so this upload is in
 an MKV container instead.
 
-VIDEO:		H.264 AVC @ 31.9 Mbps from 2018 French Blu-ray Disc
-CHAPTERS:	13 chapters, from 2019 German BD but very slightly tweaked
-			(e.g. chapter 13 now starts in time with the end credits music)
-AUDIO 1:	DTS 5.1 @ 754 kbps from 2002 US DVD*
-AUDIO 2:	Dolby Digital 5.1 @ 448 kbps from 2002 US DVD*
-AUDIO 3:	Dolby Surround 2.0 @ 192 kbps from 2002 US DVD*
-AUDIO 4:	Dolby Surround 2.0 director commentary @ 192 kbps from 2002 US DVD*
-SUBTITLE 1:	English, PGS from 2009 US BD
-SUBTITLE 2:	English SDH, PGS from 2009 US BD
-SUBTITLE 3:	Spanish, PGS from 2009 US BD
-SUBTITLE 4:	French, PGS from 2018 FR BD
-SUBTITLE 5:	German, PGS from 2019 DE BD
-SUBTITLE 6:	German translation of English commentary, PGS from 2019 DE BD
+VIDEO:      H.264 AVC @ 31.9 Mbps from 2018 French Blu-ray Disc
+CHAPTERS:   13 chapters, from 2019 German BD but very slightly tweaked
+            (e.g. chapter 13 now starts in time with the end credits music)
+AUDIO 1:    DTS 5.1 @ 754 kbps from 2002 US DVD*
+AUDIO 2:    Dolby Digital 5.1 @ 448 kbps from 2002 US DVD*
+AUDIO 3:    Dolby Surround 2.0 @ 192 kbps from 2002 US DVD*
+AUDIO 4:    Dolby Surround 2.0 director commentary @ 192 kbps from 2002 US DVD*
+SUBTITLE 1: English, PGS from 2009 US BD
+SUBTITLE 2: English SDH, PGS from 2009 US BD
+SUBTITLE 3: Spanish, PGS from 2009 US BD
+SUBTITLE 4: French, PGS from 2018 FR BD
+SUBTITLE 5: German, PGS from 2019 DE BD
+SUBTITLE 6: German translation of English commentary, PGS from 2019 DE BD
 
 * 2002 StudioCanal logo music removed and 2018 StudioCanal logo music added from
 2018 FR BD (without re-encoding the main audio)
 
 
-If you're interested to know how I put this custom version of the film together,
-then read on. Otherwise, just enjoy the film!
+If you're interested to know how I put this custom preservation together, then
+read on to see how it was done. Otherwise, just enjoy the film!
 
 
 --------------------------------------------------------------------------------
@@ -266,20 +266,20 @@ a nice clear spike in the waveform to use for sync. The mosquito smack occurs at
 the following timestamps in each source:
 
 FR BD, English 5.1: 00:00:47.841, but with the -21522ms trim this makes the
-					sync reference point 47.841 - 21.522 = 00:00:26.319
-					
-US DVD, DTS 5.1:	00:00:42.972, and 26319 - 42972 = -16653ms to sync with 5.1
-					from French BD with no StudioCanal logo
-					
-US DVD, AC-3 5.1:   00:00:43.007, and 26319 - 43007 = -16688ms to sync with 5.1
-					from French BD with no StudioCanal logo
-					
-US DVD, AC-3 2.0:	00:00:42.975, and 26319 - 42975 = -16656ms to sync with 5.1
-					from French BD with no StudioCanal logo
-					
-US DVD, commentary:	00:00:42.980, and 26319 - 42980 = -16661ms to sync with 5.1
-					from French BD with no StudioCanal logo
+                    sync reference point 47.841 - 21.522 = 00:00:26.319
+                    
+US DVD, DTS 5.1:    00:00:42.972, and 26319 - 42972 = -16653ms to sync with 5.1
+                    from French BD with no StudioCanal logo
 
+US DVD, AC-3 5.1:   00:00:43.007, and 26319 - 43007 = -16688ms to sync with 5.1
+                    from French BD with no StudioCanal logo
+
+US DVD, AC-3 2.0:   00:00:42.975, and 26319 - 42975 = -16656ms to sync with 5.1
+                    from French BD with no StudioCanal logo
+                    
+US DVD, commentary: 00:00:42.980, and 26319 - 42980 = -16661ms to sync with 5.1
+                    from French BD with no StudioCanal logo
+                    
 This assumes, however, that we can cut at precisely the moment we want, accurate
 to 1 ms. That is not how compression works.
 
@@ -295,7 +295,7 @@ eac3to "NEAR_DARK_NTSC - 2 - AC3, English, 5.1 channels, 448kbps, 48kHz, '5.1
 Dolby Digital'.ac3" "NEAR_DARK_TRIM - 3 - AC3, English, 5.1 channels, 448kbps, 
 48kHz (-16688ms).ac3" -16688ms
 
-	"A remaining delay of -8ms could not be fixed."
+    "A remaining delay of -8ms could not be fixed."
 
 In other words, it has an extra 8ms left in that I wanted removed, thus I'd need
 to remove an additional 8ms from the 2018 StudioCanal logo music to achieve 100%
@@ -322,31 +322,27 @@ Here are all the DVD tracks, with their intended and actual offsets:
 eac3to "NEAR_DARK_NTSC - 3 - DTS, English, 5.1 channels, 755kbps, 48kHz, '5.1 
 DTS'.dts" "NEAR_DARK_TRIM - 2 - DTS, English, 5.1 channels, 754kbps, 48kHz 
 (-16653ms).dts" -16653ms
-#	A remaining delay of -3ms could not be fixed.
-#	Actual offset = -16653 + 3 = -16650ms
+    A remaining delay of -3ms could not be fixed.
+    (Actual offset = -16653 + 3 = -16650ms)
 
 eac3to "NEAR_DARK_NTSC - 2 - AC3, English, 5.1 channels, 448kbps, 48kHz, '5.1 
 Dolby Digital'.ac3" "NEAR_DARK_TRIM - 3 - Dolby Digital, English, 5.1 channels, 
 448kbps, 48kHz (-16688ms).ac3" -16688ms
-#	A remaining delay of +16ms could not be fixed.
-#	Actual offset = -16688 - 16 = -16704ms
+    A remaining delay of +16ms could not be fixed.
+    (Actual offset = -16688 - 16 = -16704ms)
 
 eac3to "NEAR_DARK_NTSC - 4 - AC3 Surround, English, 2.0 channels, 192kbps, 
 48kHz, '2.0 Dolby Digital'.ac3" "NEAR_DARK_TRIM - 4 - Dolby Surround, English, 
 2.0 channels, 192kbps, 48kHz (-16656ms).ac3" -16656ms
-#	A remaining delay of +16ms could not be fixed.
-#	Actual offset = -16656 - 16 = -16672ms
+    A remaining delay of +16ms could not be fixed.
+    (Actual offset = -16656 - 16 = -16672ms)
 
 eac3to "NEAR_DARK_NTSC - 5 - AC3 Surround, English, 2.0 channels, 192kbps, 
 48kHz, 'Director's comments (2.0 Dolby Digital)'.ac3" "NEAR_DARK_TRIM - 5 - 
 Commentary, Dolby Surround, English, 2.0 channels, 192kbps, 48kHz 
 (-16661ms).ac3" -16661ms
-#	A remaining delay of +11ms could not be fixed.
-#	Actual offset = -16661 - 11 = -16672ms
-
-
-With the main tracks now ready, the next step is making the custom encodes of
-the 2018 StudioCanal logo music.
+    A remaining delay of +11ms could not be fixed.
+    (Actual offset = -16661 - 11 = -16672ms)
 
 
 --------------------------------------------------------------------------------
@@ -447,6 +443,10 @@ eac3to StudioCanal_21.515.mka StudioCanal_21.515.wavs
 ... then encoded these as 754 kbps DTS.
 
 
+--------------------------------------------------------------------------------
+--  JOINING THE AUDIO TOGETHER  ------------------------------------------------
+--------------------------------------------------------------------------------
+
 Finally, I used the "copy /b" Windows command line function to concatinate the
 new StudioCanal logo audio to each of my audio tracks...
 
@@ -505,7 +505,7 @@ Remember that mosquito slap from syncing the audio earlier? Here's where it
 falls in the 5.1 audio track from the UK and US BD releases:
 
 UK/US BD, 5.1:      00:00:46.527, compared to 00:00:47.841 on the French BD
-					that's 47841 - 46527 = +1314ms to sync
+                    that's 47841 - 46527 = +1314ms to sync
 
 Because these are all PGS subtitles, this can be done either by creating new
 versions of the .sup files with offset timestamps in eac3to using a delay (the
@@ -525,26 +525,29 @@ captions.sup" " NEAR_DARK_REMUX - 7 - Subtitle (PGS), Spanish, 707 normal
 captions, 10 forced captions (+1314ms).sup" +1314ms
 
 
+--------------------------------------------------------------------------------
+--  RESULTS  -------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
-After all that, here's what we've got in the end result:
+After all that, here's what I ended up with:
 
-VIDEO:		H.264 AVC @ 31.9 Mbps from 2018 French Blu-ray Disc
-CHAPTERS:	13 chapters, from 2019 German BD but very slightly tweaked
-			(e.g. chapter 13 now starts in time with the end credits music)
-AUDIO 1:	DTS 5.1 @ 754 kbps from 2002 US DVD
-			(synced 4 ms earlier than FR BD 5.1 audio)
-AUDIO 2:	Dolby Digital 5.1 @ 448 kbps from 2002 US DVD
-			(synced 2 ms earlier than FR BD 5.1 audio)
-AUDIO 3:	Dolby Surround 2.0 @ 192 kbps from 2002 US DVD
-			(synced 2 ms earlier than FR BD 5.1 audio)
-AUDIO 4:	Dolby Surround 2.0 director commentary @ 192 kbps from 2002 US DVD
-			(synced 3 ms later than FR BD 5.1 audio)
-SUBTITLE 1:	English, PGS from 2009 US BD
-			(synced 1314 ms later to match the French BD video)
-SUBTITLE 2:	English SDH, PGS from 2009 US BD
-			(synced 1314 ms later to match the French BD video)
-SUBTITLE 3:	Spanish, PGS from 2009 US BD
-			(synced 1314 ms later to match the French BD video)
-SUBTITLE 4:	French, PGS from 2018 FR BD
-SUBTITLE 5:	German, PGS from 2019 DE BD
-SUBTITLE 6:	German translation of English commentary, PGS from 2019 DE BD
+VIDEO:      H.264 AVC @ 31.9 Mbps from 2018 French Blu-ray Disc
+CHAPTERS:   13 chapters, from 2019 German BD but very slightly tweaked
+            (e.g. chapter 13 now starts in time with the end credits music)
+AUDIO 1:    DTS 5.1 @ 754 kbps from 2002 US DVD
+            (synced 4 ms earlier than FR BD 5.1 audio)
+AUDIO 2:    Dolby Digital 5.1 @ 448 kbps from 2002 US DVD
+            (synced 2 ms earlier than FR BD 5.1 audio)
+AUDIO 3:    Dolby Surround 2.0 @ 192 kbps from 2002 US DVD
+            (synced 2 ms earlier than FR BD 5.1 audio)
+AUDIO 4:    Dolby Surround 2.0 director commentary @ 192 kbps from 2002 US DVD
+            (synced 3 ms later than FR BD 5.1 audio)
+SUBTITLE 1: English, PGS from 2009 US BD
+            (synced 1314 ms later to match the French BD video)
+SUBTITLE 2: English SDH, PGS from 2009 US BD
+            (synced 1314 ms later to match the French BD video)
+SUBTITLE 3: Spanish, PGS from 2009 US BD
+            (synced 1314 ms later to match the French BD video)
+SUBTITLE 4: French, PGS from 2018 FR BD
+SUBTITLE 5: German, PGS from 2019 DE BD
+SUBTITLE 6: German translation of English commentary, PGS from 2019 DE BD
